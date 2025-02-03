@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        td {
+            background-color: #fafafa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 24px;
+            color: #444;
+        }
+
+        .errors-list {
+            list-style-type: decimal;
+            padding-left: 20px;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        .errors-list li {
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>API Documentation</h1>
+    
+    <div class="section-title">Flower API</div>
+    <table>
+        <thead>
+            <tr>
+                <th>CRUD</th>
+                <th>כתובת</th>
+                <th>פרמטרים</th>
+                <th>Body</th>
+                <th>מה עושה</th>
+                <th>איזה סוגי שגיאות יכולות לחזור</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>get</td>
+                <td>Api/flowers</td>
+                <td>-</td>
+                <td>-</td>
+                <td>מחזירה את כל הפרחים</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>get</td>
+                <td>Api/flowers/id</td>
+                <td>id</td>
+                <td>-</td>
+                <td>מחזירה פרח לפי id</td>
+                <td>Id לא קיים</td>
+            </tr>
+            <tr>
+                <td>post</td>
+                <td>Api/flowers</td>
+                <td>-</td>
+                <td>Name, price, flowerContain</td>
+                <td>מוסיפה פרח</td>
+                <td>
+                    <ul class="errors-list">
+                        <li>נתונים חסרים</li>
+                        <li>מחיר לא הגיוני</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>delete</td>
+                <td>Api/flowers/id</td>
+                <td>id</td>
+                <td>-</td>
+                <td>מוחקת פרח</td>
+                <td>id לא קיים</td>
+            </tr>
+            <tr>
+                <td>put</td>
+                <td>Api/flowers/id</td>
+                <td>id</td>
+                <td>Name, price, flowerContain</td>
+                <td>מעדכנת פרח</td>
+                <td>
+                    <ul class="errors-list">
+                        <li>נתונים חסרים</li>
+                        <li>id לא קיים</li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="section-title">User API</div>
+    <table>
+        <thead>
+            <tr>
+                <th>CRUD</th>
+                <th>כתובת</th>
+                <th>פרמטרים</th>
+                <th>Body</th>
+                <th>מה עושה</th>
+                <th>איזה סוגי שגיאות יכולות לחזור</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>get</td>
+                <td>api/users</td>
+                <td>-</td>
+                <td>-</td>
+                <td>מחזירה את כל המשתמשים</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>get</td>
+                <td>api/users/tz</td>
+                <td>tz</td>
+                <td>-</td>
+                <td>מחזירה משתמש לפי id</td>
+                <td>tz לא קיים</td>
+            </tr>
+            <tr>
+                <td>post</td>
+                <td>api/users</td>
+                <td>-</td>
+                <td>Tz, fullName, password</td>
+                <td>מוסיפה משתמש</td>
+                <td>
+                    <ul class="errors-list">
+                        <li>נתונים חסרים</li>
+                        <li>סיסמה של פחות מ-8 תווים</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>put</td>
+                <td>api/users/updateWithoutPassword</td>
+                <td>Tz</td>
+                <td>Tz, fullName, role, email, startDate</td>
+                <td>עדכון משתמש ללא עדכון סיסמה</td>
+                <td>
+                    <ul class="errors-list">
+                        <li>ששולחים סיסמה דרך ה-body</li>
+                        <li>tz לא קיים</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>put</td>
+                <td>api/users</td>
+                <td>Tz</td>
+                <td>password</td>
+                <td>עדכון סיסמה של משתמש</td>
+                <td>
+                    <ul class="errors-list">
+                        <li>נתונים חסרים</li>
+                        <li>tz לא קיים</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>post</td>
+                <td>api/users/getUserByFullNameAndPassword</td>
+                <td>-</td>
+                <td>Password, fullName</td>
+                <td>מחזירה משתמש לפי שם מלא וסיסמה</td>
+                <td>
+                    <ul class="errors-list">
+                        <li>נתונים חסרים</li>
+                        <li>שם משתמש וסיסמה לא קיימים</li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="section-title">Order API</div>
+    <table>
+        <thead>
+            <tr>
+                <th>CRUD</th>
+                <th>כתובת</th>
+                <th>פרמטרים</th>
+                <th>Body</th>
+                <th>מה עושה</th>
+                <th>איזה סוגי שגיאות יכולות לחזור</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>get</td>
+                <td>api/orders</td>
+                <td>-</td>
+                <td>-</td>
+                <td>מחזירה את כל ההזמנות</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>post</td>
+                <td>api/orders</td>
+                <td>-</td>
+                <td>userId, products[_id, name, price, qty], ordDate, targetDate, address, isSend, sendingPrice, finalPrice</td>
+                <td>מוסיפה הזמנה</td>
+                <td>
+                    <ul class="errors-list">
+                        <li>נתונים חסרים</li>
+                        <li>tz לא קיימת</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>delete</td>
+                <td>api/orders/id</td>
+                <td>id</td>
+                <td>-</td>
+                <td>מוחקת הזמנה</td>
+                <td>
+                    <ul class="errors-list">
+                        <li>id לא קיים</li>
+                        <li>הזמנה שנשלחה כבר</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>get</td>
+                <td>api/orders/userId</td>
+                <td>userId</td>
+                <td>-</td>
+                <td>מחזירה הזמנות של משתמש</td>
+                <td>אין הזמנות ל-userId</td>
+            </tr>
+            <tr>
+                <td>put</td>
+                <td>api/orders/id</td>
+                <td>id</td>
+                <td>-</td>
+                <td>מעדכנת הזמנה ל-"נשלחה"</td>
+                <td>id לא קיים</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

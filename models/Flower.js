@@ -1,5 +1,6 @@
 import mongoose, { Schema,model } from "mongoose";
 
+//יצירת טבלת פרחים
 export const FlowerSchema= mongoose.Schema({
 
 name:{type:String,required: true},

@@ -2,6 +2,7 @@ import mongoose, { Schema, model, Types } from "mongoose";
 import { UserSchema } from "./User.js";
 import { FlowerSchema } from './Flower.js'
 
+//יצירת טבלת הזמנות
 const OrderSchema = mongoose.Schema({
     //id אוטומטי
     userId: { type: String , required: true },
@@ -22,9 +23,11 @@ const OrderSchema = mongoose.Schema({
     sendingPrice: { type: Number, default: 100 },
     finalPrice: {
         type: Number,
+        //פונקציה דיפולטיבית לחשוב מחיר סופי
         default: function () { 
             let sum = 0;
             this.products.forEach(product => {
+                //סכומת את מחירי המוצרים כפול הכמות שהוזמנה מכל מוצר
                 sum += product.price * product.qty;
             });
             return sum + this.sendingPrice; 

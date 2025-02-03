@@ -1,5 +1,7 @@
 import mongoose, { Schema, model } from "mongoose";
 
+
+//יצירת טבלת משתמשים
 export const UserSchema = mongoose.Schema({
     tz: {type:String,required: true , unique: true},
     fullName: {type:String,required: true},

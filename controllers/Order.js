@@ -52,7 +52,11 @@ export const deleteOrderById = async (req, res) => {
 export const getAllOrdersByUserId = async (req, res) => {
     let { userId } = req.params;
     try {
+        //תחפש במודל הזמנה לפי הuser id שנשלח בurl
         let Orders = await OrderModel.find({ userId: userId })
+        //וליכולות להיות מספר הזמנות למשתמש אחד
+        //ולכן אם המערך ריק תחזיר שגיאה
+       
         if (Orders.length == 0)
             return res.status(400).json({ title: "error cannot find orders", message: "missin correct userId" });
         return res.json(Orders);
@@ -65,6 +69,7 @@ export const getAllOrdersByUserId = async (req, res) => {
 export const updateOrderToSendingById = async (req, res) => {
     let { id } = req.params;
     try {
+        //חיפוש במודל לפי הid ותעדכן את המשלוח לtrue ותחזיר לי כres את האובייקט המעודכן
         let Order = await OrderModel.findByIdAndUpdate(id, { isSend: true }, { new: true });
         if (!Order)
             return res.status(400).json({ title: "error cannot find order to update", message: "missing id" });
