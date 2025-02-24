@@ -1,9 +1,11 @@
 import { FlowerModel } from '../models/Flower.js';
 
 export const getAllFlowers = async (req, res) => {
+    let limit = req.query.limit || 2;
+    let page = req.query.page || 1;
     try {
         //מביא את כל תוכן מודל הפרח
-        let data = await FlowerModel.find();
+        let data = await FlowerModel.find().skip(limit * (page - 1)).limit(limit);
         //ותציג את התוכן בתגובה
         res.json(data);
     }
@@ -12,6 +14,23 @@ export const getAllFlowers = async (req, res) => {
         return res.status(400).json({
             title: "cannot get all", message:
                 er.message
+        })
+    }
+}
+export const getCountOfPages = async (req, res) => {
+    let limit=req.query.limit||2;
+    try {
+        let countOfFlowers= await FlowerModel.countDocuments();
+        res.json({
+            countOfFlowers: countOfFlowers,
+            countOfPages: Math.ceil(countOfFlowers /limit),
+            limit:limit
+        })
+    }
+    catch (er) {
+        return res.status(400).json({
+            title: "cannot get count", message:
+                err.message
         })
     }
 }

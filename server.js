@@ -19,6 +19,9 @@ connect().then(()=>{
 //שימוש בספרית express לצורך הפעלת השרת
 const app=express();
 app.use(express.json());
+// const cors = require('cors');
+app.use(cors({origin:"*",methods:"*"}));
+
 //הפניה לroutes
 app.use('/flowers', flowerRouter);
 app.use('/users', userRouter);

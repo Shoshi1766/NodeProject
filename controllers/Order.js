@@ -19,10 +19,10 @@ export const addOrder = async (req, res) => {
     try {
         let { userId, products, address } = req.body;
         if (!userId || !products || !address || products.length == 0)
-            return res.status(400).json({ title: "erorr cannot add order", message: "missing requierd fileds" });
+            return res.status(400).json({ title: "erorr cannot add order1", message: "missing requierd fileds" });
         const userExists = await UserModel.findOne({ tz: userId });
         if (!userExists)
-            return res.status(400).json({ title: "erorr cannot add order", message: "missing correct tz of user" });
+            return res.status(400).json({ title: "erorr cannot add order2", message: "missing correct tz of user" });
         let Order = new OrderModel(req.body);
         await Order.save();
         return res.json(Order);

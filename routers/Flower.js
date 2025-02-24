@@ -4,11 +4,13 @@ import {
     getFlowerById,
     addFlower,
     deleteFlowerById,
-    updateFlowerById
+    updateFlowerById,
+    getCountOfPages
 } from '../controllers/Flower.js';
 
 const flowerRouter = Router();
 flowerRouter.get("/", getAllFlowers);
+flowerRouter.get("/count",getCountOfPages)
 flowerRouter.get("/:id", getFlowerById);
 flowerRouter.post("/",addFlower);
 flowerRouter.delete("/:id",deleteFlowerById);
