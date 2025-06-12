@@ -16,7 +16,7 @@ const OrderSchema = mongoose.Schema({
             }
         ], required: true
     },
-    odrerDate: { type: Date, default: new Date() },
+    orderDate: { type: Date, default: new Date() },
     targetDate: { type: Date },
     address: { type: String, required: true },
     isSend: { type: Boolean, default: false },

@@ -19,7 +19,7 @@ connect().then(()=>{
 //שימוש בספרית express לצורך הפעלת השרת
 const app=express();
 app.use(express.json());
-// const cors = require('cors');
+app.use('/static/images', express.static('static/images'));
 app.use(cors({origin:"*",methods:"*"}));
 
 //הפניה לroutes
